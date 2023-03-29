@@ -1,0 +1,21 @@
+{
+  "name": "fedorenkosergiy.grabli.pool",
+  "version": "0.0.0",
+  "displayName": "Grabli Pool",
+  "description": "Unity3d pools",
+  "unity": "2020.3",
+  "unityRelease": "23f1",
+  "keywords": [
+    "Pool",
+    "Grabli",
+    "UnityEngine"
+  ],
+  "author": {
+    "name": "Serhii Fedorenko",
+    "email": "fedorenkosergiy@gmail.com",
+    "url": "https://example.com"
+  },
+  "dependencies": {
+    "fedorenkosergiy.grabli.abstraction": "0.0.0"
+  }
+}
