@@ -1,0 +1,8 @@
+{
+  "name": "Grabli.Pool.Editor",
+  "rootNamespace": "Grabli.Pool",
+  "references": [
+    "GUID:43b243fe22fde4214a059b41a612313d",
+    "GUID:8e39c78556934f698d31dc18aa962490"
+  ]
+}

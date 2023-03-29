@@ -1,0 +1,7 @@
+{
+  "rootNamespace": "Grabli.Pool",
+  "name": "Grabli.Pool",
+  "references": [
+    "GUID:43b243fe22fde4214a059b41a612313d"
+  ]
+}

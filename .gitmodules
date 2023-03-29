@@ -1,0 +1,4 @@
+[submodule "Grabli.EditorConfig"]
+	path = Grabli.EditorConfig
+	url = git@github.com:fedorenkosergiy/Grabli.EditorConfig.git
+	branch = pure
