@@ -6,29 +6,31 @@ using JetBrains.Annotations;
 namespace Grabli.Pool
 {
 	[PublicAPI]
-	public class SimplePool<T> : Pool<T> where T : class, new()
+	public class CreatorBasedPool<T> : Pool<T> where T : class
 	{
 		public const int MinCapacity = 4;
 		public const int DefaultCapacity = 128;
 		public const int MaxReasonableInitCapacity = 256;
 
+		private Creator<T> creator;
 		private int initialCapacity;
 		private readonly Stack<T> pool;
 
 		public int Capacity { get; private set; }
 
-		public SimplePool() : this(DefaultCapacity) { }
+		public CreatorBasedPool(Creator<T> customCreator) : this(customCreator, DefaultCapacity) { }
 
-		public SimplePool(int capacity)
+		public CreatorBasedPool(Creator<T> customCreator, int capacity)
 		{
 			if (capacity < MinCapacity) throw new ArgumentOutOfRangeException(nameof(capacity));
 
+			creator = customCreator;
 			initialCapacity = capacity;
 			Capacity = capacity;
 			pool = new Stack<T>(Math.Min(capacity, MaxReasonableInitCapacity));
 		}
 
-		public void Get(out T result) => result = pool.Count == 0 ? new T() : pool.Pop();
+		public void Get(out T result) => result = pool.Count == 0 ? creator.Create() : pool.Pop();
 
 		public void Release([NotNull] T value)
 		{
@@ -59,7 +61,7 @@ namespace Grabli.Pool
 
 		public void Init(int warmUpCount)
 		{
-			while (pool.Count < Capacity && pool.Count < warmUpCount) { pool.Push(new T()); }
+			while (pool.Count < Capacity && pool.Count < warmUpCount) { pool.Push(creator.Create()); }
 		}
 	}
 }

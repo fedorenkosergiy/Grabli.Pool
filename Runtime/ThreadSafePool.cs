@@ -1,5 +1,6 @@
 using Grabli.Abstraction;
 using JetBrains.Annotations;
+using System.Collections.Generic;
 
 namespace Grabli.Pool
 {
@@ -35,9 +36,15 @@ namespace Grabli.Pool
 			lock (pool) { pool.Clear(); }
 		}
 
-		public void Reset()
+		public void Deinit(ISet<Deinitable> alreadyHandled)
 		{
-			lock (pool) { pool.Reset(); }
+			lock (pool)
+			{
+				if (alreadyHandled.Contains(this)) return;
+
+				alreadyHandled.Add(this);
+				pool.Deinit(alreadyHandled);
+			}
 		}
 
 		public void Resize(int capacity)
@@ -45,9 +52,9 @@ namespace Grabli.Pool
 			lock (pool) { pool.Resize(capacity); }
 		}
 
-		public void WarmUp(int count)
+		public void Init(int warmUpCount)
 		{
-			lock (pool) { pool.WarmUp(count); }
+			lock (pool) { pool.Init(warmUpCount); }
 		}
 	}
 }
