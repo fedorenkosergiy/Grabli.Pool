@@ -23,7 +23,7 @@ namespace Grabli.Pool
 
 		public void Clear() => pool.Clear();
 
-		public void Deinit(ISet<Deinitable> alreadyHandled)
+		public void Deinit(ISet<DeinitableTree> alreadyHandled)
 		{
 			if (alreadyHandled.Contains(this)) return;
 

@@ -19,7 +19,7 @@ namespace Grabli.Pool
 
 		public virtual void Clear() => pool.Clear();
 
-		public virtual void Deinit(ISet<Deinitable> alreadyHandled) => pool.Deinit(alreadyHandled);
+		public virtual void Deinit(ISet<DeinitableTree> alreadyHandled) => pool.Deinit(alreadyHandled);
 
 		public virtual void Resize(int capacity) => pool.Resize(capacity);
 

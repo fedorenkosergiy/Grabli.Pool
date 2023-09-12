@@ -36,7 +36,7 @@ namespace Grabli.Pool
 			lock (pool) { pool.Clear(); }
 		}
 
-		public void Deinit(ISet<Deinitable> alreadyHandled)
+		public void Deinit(ISet<DeinitableTree> alreadyHandled)
 		{
 			lock (pool)
 			{
